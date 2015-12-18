@@ -28,7 +28,7 @@ def download(url):
     try:
         with urlopen(url) as response, NamedTemporaryFile(delete=False) as tmp:
             tmp.write(response.read())
-        with open(tmp.name) as f:
+        with open(tmp.name, encoding='utf-8') as f:
             return list(csv.DictReader(f))
     except Exception as e:
         sys.exit('Error: ' + e.args[0])
