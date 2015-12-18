@@ -42,12 +42,16 @@ def download(url):
 def find_closest_line(data, config):
     from dateutil.parser import parse as parse_date
 
-    start_date = config.get('csv_fields', 'start_date', fallback='start_date')
-    end_date = config.get('csv_fields', 'end_date', fallback='end_date')
+    def start_date(line,
+                   field=config.get('csv_fields', 'start_date', fallback='start_date')):
+        return parse_date(line[field])
+
+    def end_date(line,
+                 field=config.get('csv_fields', 'end_date', fallback='')):
+        return parse_date(line[field]) if field else datetime.max
 
     for line in data:
-        date_start, date_end = parse_date(line[start_date]), parse_date(line[end_date])
-        if date_start <= NOW <= date_end:
+        if start_date(line) <= NOW <= end_date(line):
             return line
     sys.exit('Error: No line in csv matches NOW')
 
