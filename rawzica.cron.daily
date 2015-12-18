@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rawzica | { cowsay 2>/dev/null || cat; }
