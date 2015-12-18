@@ -1,0 +1,15 @@
+Source: rawzica
+Section: misc
+Priority: optional
+Maintainer: Biolab <info@biolab.si>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.5
+Homepage: https://github.com/biolab/rawzica/
+Vcs-Git: git://github.com/biolab/rawzica.git
+Vcs-Browser: https://github.com/biolab/rawzica
+
+Package: rawzica
+Architecture: all
+Depends: ${misc:Depends}
+    , python3-dateutil
+Description: Chores reminders for workplaces
