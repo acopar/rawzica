@@ -27,6 +27,16 @@ dpkg -i ../rawzica_*.deb
 apt-get install -f
 ```
 
+To install on any POSIX-compatible system:
+
+```bash
+sudo pip install git+https://github.com/biolab/rawzica.git
+```
+
+If your _/etc/crontab_ doesn't already periodically (i.e. daily) invoke the
+scripts in _/etc/cron.daily/_ (as is probably the case in Mac OS X), you may
+need to set it so that it does.
+
 Usage
 -----
 Configure rawzica in /etc/rawzica.conf. That's it.
