@@ -1,3 +1,4 @@
+# coding: utf-8
 #!/usr/bin/env python
 
 import os
@@ -36,17 +37,13 @@ def download(url):
     if not url:
         sys.exit('Error: No URL specified in config file ' + CONFIG_FILE)
     try:
-        with urlopen(url) as response, NamedTemporaryFile(delete=False) as tmp:
+        with urlopen(url) as response, NamedTemporaryFile() as tmp:
             tmp.write(response.read())
-        with open(tmp.name, encoding='utf-8') as f:
-            return list(csv.DictReader(f))
+            tmp.flush()
+            with open(tmp.name, encoding='utf-8') as f:
+                return list(csv.DictReader(f))
     except Exception as e:
         sys.exit('Error: ' + e.args[0])
-    finally:
-        try:
-            os.unlink(tmp.name)
-        except OSError:
-            pass
 
 
 def find_closest_line(data, config):
