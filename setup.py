@@ -1,5 +1,10 @@
 # coding: utf-8
 
+import sys
+
+if sys.version_info.major < 3:
+    raise RuntimeError('Need Python 3 (or later) for rawzica!')
+
 from setuptools import setup, find_packages
 from rawzica import __version__
 
