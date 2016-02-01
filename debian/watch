@@ -1,4 +1,0 @@
-# Compulsory line, this is a version 3 file
-version=3
-
-https://github.com/biolab/rawzica/tags .*/(\d[\d\.]*)\.tar\.gz

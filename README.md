@@ -16,18 +16,7 @@ email reminders.
 
 Installing
 ----------
-To build/install on a Debian-based GNU/Linux distro:
-
-```bash
-# Build the deb package
-dpkg-buildpackage -us -uc -b
-# Install the package
-dpkg -i ../rawzica_*.deb
-# Install its dependencies
-apt-get install -f
-```
-
-To install on any POSIX-compatible system:
+To install on a POSIX-compatible system:
 
 ```bash
 sudo pip install git+https://github.com/biolab/rawzica.git
