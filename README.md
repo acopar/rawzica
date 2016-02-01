@@ -81,6 +81,7 @@ Now, you can configure rawzica with the following _/etc/rawzica.conf_ file:
 ```ini
 [default]
 url = https://docs.google.com/spreadsheets/d/Your_GDocs_Sheet_Key/export?format=csv&gid=0
+date_format = %Y-%m-%d
 
 [csv_fields]
 start_date = start date
@@ -99,7 +100,7 @@ In the above case, email notifications will be sent out only on mondays.
 You can have different notifications for different days of the week. See the
 configuration file for more information.
 
-You can test the setup by running on the command line:
+If it's Monday, you can test the setup by running on the command line:
 ```bash
 rawzica
 ```

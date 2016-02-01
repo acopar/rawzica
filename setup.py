@@ -7,7 +7,6 @@ setup(
     py_modules=['rawzica'],
     version=__version__,
     install_requires=(
-        'python-dateutil',
     ),
     entry_points={
         'console_scripts': (

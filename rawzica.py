@@ -8,8 +8,6 @@ from tempfile import NamedTemporaryFile
 from smtplib import SMTP
 from email.mime.text import MIMEText
 
-from dateutil.parser import parse as parse_date
-
 try:
     from urllib.request import urlopen
 except ImportError:  # Py2
@@ -28,7 +26,7 @@ CONFIG_FILE = '/etc/rawzica.conf'
 
 
 def parse_config():
-    config = ConfigParser()
+    config = ConfigParser(interpolation=None)  # Don't interpolate for date_format
     if not config.read(CONFIG_FILE):
         sys.exit('Error: Cannot read configuration file ' + CONFIG_FILE)
     return config
@@ -52,6 +50,15 @@ def download(url):
 
 
 def find_closest_line(data, config):
+    date_format = config.get('default', 'date_format', fallback='')
+    if not date_format:
+        try:
+            from dateutil.parser import parse as parse_date
+        except ImportError:
+            sys.exit('Need python-dateutil unless you configure date_format')
+    else:
+        def parse_date(date_string):
+            return datetime.strptime(date_string, date_format)
 
     def start_date(line,
                    field=config.get('csv_fields', 'start_date', fallback='start_date')):
