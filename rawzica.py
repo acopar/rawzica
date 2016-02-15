@@ -65,7 +65,7 @@ def find_closest_line(data, config):
                  field=config.get('csv_fields', 'end_date', fallback='')):
         return parse_date(line[field]) if field else datetime.max
 
-    for line in data:
+    for line in reversed(list(data)):
         if start_date(line) <= NOW <= end_date(line):
             return line
     sys.exit('Error: No line in csv matches NOW')
