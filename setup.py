@@ -1,6 +1,8 @@
 # coding: utf-8
 
+import os
 import sys
+from shutil import copy
 
 if sys.version_info.major < 3:
     raise RuntimeError('Need Python 3 (or later) for rawzica!')
@@ -25,4 +27,6 @@ setup(
         ('/etc/', ['rawzica.conf']),
     ),
 )
-
+ETC_FILE = 'rawzica.conf'
+if not os.path.exists('/etc/' + ETC_FILE):
+    copy(os.path.join(__file__, ETC_FILE), '/etc/')
